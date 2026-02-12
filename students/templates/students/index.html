@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Original gradient kept */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background decorative circles */
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+        }
+
+        body::before {
+            width: 300px;
+            height: 300px;
+            top: -80px;
+            left: -80px;
+        }
+
+        body::after {
+            width: 250px;
+            height: 250px;
+            bottom: -60px;
+            right: -60px;
+        }
+
+        /* Floating study icons */
+        .icon {
+            position: absolute;
+            font-size: 35px;
+            color: rgba(255, 255, 255, 0.6);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Random positions, sizes, and speeds for multiple icons */
+        .icon:nth-child(1) { left: 5%; animation-duration: 12s; font-size: 30px; }
+        .icon:nth-child(2) { left: 15%; animation-duration: 10s; font-size: 35px; }
+        .icon:nth-child(3) { left: 25%; animation-duration: 14s; font-size: 40px; }
+        .icon:nth-child(4) { left: 35%; animation-duration: 11s; font-size: 28px; }
+        .icon:nth-child(5) { left: 45%; animation-duration: 13s; font-size: 38px; }
+        .icon:nth-child(6) { left: 55%; animation-duration: 15s; font-size: 32px; }
+        .icon:nth-child(7) { left: 65%; animation-duration: 12s; font-size: 36px; }
+        .icon:nth-child(8) { left: 75%; animation-duration: 14s; font-size: 42px; }
+        .icon:nth-child(9) { left: 85%; animation-duration: 11s; font-size: 30px; }
+        .icon:nth-child(10){ left: 95%; animation-duration: 13s; font-size: 35px; }
+
+        .container {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1; /* Card above icons */
+        }
+
+        h1 {
+            margin-bottom: 35px;
+            font-size: 30px;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            width: 320px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            color: white;
+        }
+
+        .student {
+            background: linear-gradient(45deg, #2193b0, #6dd5ed);
+        }
+
+        .student:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(33,147,176,0.4);
+        }
+
+        .staff {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+        }
+
+        .staff:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(17,153,142,0.4);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Multiple floating study icons -->
+    <div class="icon">📚</div>
+    <div class="icon">✏️</div>
+    <div class="icon">🎓</div>
+    <div class="icon">📝</div>
+    <div class="icon">📖</div>
+    <div class="icon">📐</div>
+    <div class="icon">🖍️</div>
+    <div class="icon">📊</div>
+    <div class="icon">📎</div>
+    <div class="icon">🖋️</div>
+
+    <div class="container">
+        <h1>📚 Student Management System</h1>
+
+        <div class="card">
+            <a href="{% url 'student_login' %}" class="btn student">
+                🎓 Student
+            </a>
+
+            <a href="#" class="btn staff">
+                👩‍🏫 Staff
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

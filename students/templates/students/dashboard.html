@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #1e3a8a; /* deep blue background */
+            position: relative;
+            padding: 40px;
+        }
+
+        /* Floating study icons */
+        .floating-icon {
+            position: absolute;
+            width: 50px;
+            opacity: 0.2;
+            animation: float 12s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg);}
+            50% { transform: translateY(-25px) rotate(180deg);}
+            100% { transform: translateY(0) rotate(360deg);}
+        }
+
+        .icon1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .icon2 { top: 20%; left: 80%; animation-delay: 3s; }
+        .icon3 { top: 70%; left: 15%; animation-delay: 6s; }
+        .icon4 { top: 50%; left: 60%; animation-delay: 9s; }
+        .icon5 { top: 80%; left: 40%; animation-delay: 12s; }
+
+        /* Overlay container with light blue color */
+        .overlay {
+            background: #cce7ff; /* light blue overlay */
+            min-height: 100vh;
+            padding: 40px;
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-size: 34px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            padding: 25px;
+            border-radius: 20px;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 160px;
+            font-size: 16px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            text-align: center;
+            cursor: pointer;
+            background: #ffffff; /* white cards */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+        }
+
+        .label {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .value {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .emoji {
+            font-size: 28px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Floating study icons -->
+    <img class="floating-icon icon1" src="https://img.icons8.com/fluency/48/book.png" alt="Book">
+    <img class="floating-icon icon2" src="https://img.icons8.com/fluency/48/pencil.png" alt="Pencil">
+    <img class="floating-icon icon3" src="https://img.icons8.com/fluency/48/laptop.png" alt="Laptop">
+    <img class="floating-icon icon4" src="https://img.icons8.com/fluency/48/clipboard.png" alt="Clipboard">
+    <img class="floating-icon icon5" src="https://img.icons8.com/fluency/48/teacher.png" alt="Teacher">
+
+    <div class="overlay">
+        <h2>📚 Welcome, {{ student.name }} 🎓</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <div class="emoji">🆔</div>
+                <div class="label">Roll No</div>
+                <div class="value">{{ student.roll_no }}</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🏫</div>
+                <div class="label">Class</div>
+                <div class="value">{{ student.student_class }}</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🚻</div>
+                <div class="label">Gender</div>
+                <div class="value">{{ student.gender }}</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🩸</div>
+                <div class="label">Blood Group</div>
+                <div class="value">{{ student.blood_group }}</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">📊</div>
+                <div class="label">Attendance</div>
+                <div class="value">{{ student.attendance }}%</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">📝</div>
+                <div class="label">Exam Marks</div>
+                <div class="value">{{ student.exam_marks }}</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">💰</div>
+                <div class="label">Total Fees</div>
+                <div class="value">₹{{ student.total_fees }}</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">✅</div>
+                <div class="label">Fees Paid</div>
+                <div class="value">₹{{ student.fees_paid }}</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">⏳</div>
+                <div class="label">Fees Pending</div>
+                <div class="value">₹{{ student.fees_pending }}</div>
+            </div>
+
+            <div class="card">
+                <div class="emoji">📞</div>
+                <div class="label">Parent Phone</div>
+                <div class="value">{{ student.parents_phone }}</div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
