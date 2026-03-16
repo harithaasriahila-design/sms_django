@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Student</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.container{
+width:60%;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+label{
+font-weight:bold;
+}
+
+input{
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+margin-top:10px;
+padding:12px;
+background:#667eea;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#5643cc;
+}
+
+.back{
+display:inline-block;
+margin-top:15px;
+text-decoration:none;
+color:white;
+background:#1e0c7b;
+padding:10px 15px;
+border-radius:8px;
+}
+
+.back:hover{
+background:#301357;
+}
+
+.profile{
+width:80px;
+height:80px;
+border-radius:50%;
+display:block;
+margin:0 auto 20px auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Edit Student</h2>
+
+{% if student.photo %}
+<img src="{{ student.photo.url }}" class="profile">
+{% endif %}
+
+<form method="POST">
+{% csrf_token %}
+
+<label>Name</label>
+<input type="text" name="name" value="{{ student.name }}">
+
+<label>Roll No</label>
+<input type="text" name="roll_no" value="{{ student.roll_no }}">
+
+<label>Student Class</label>
+<input type="text" name="student_class" value="{{ student.student_class }}">
+
+<label>Age</label>
+<input type="number" name="age" value="{{ student.age }}">
+
+<label>Gender</label>
+<input type="text" name="gender" value="{{ student.gender }}">
+
+<label>Blood Group</label>
+<input type="text" name="blood_group" value="{{ student.blood_group }}">
+
+<label>Address</label>
+<input type="text" name="address" value="{{ student.address }}">
+
+<label>Parent Phone</label>
+<input type="text" name="parents_phone" value="{{ student.parents_phone }}">
+
+<label>Exam Marks</label>
+<input type="number" name="exam_marks" value="{{ student.exam_marks }}">
+
+<label>Attendance</label>
+<input type="number" name="attendance" value="{{ student.attendance }}">
+
+<label>Total Fees</label>
+<input type="number" name="total_fees" value="{{ student.total_fees }}">
+
+<label>Fees Paid</label>
+<input type="number" name="fees_paid" value="{{ student.fees_paid }}">
+
+<label>Fees Pending</label>
+<input type="number" name="fees_pending" value="{{ student.fees_pending }}" readonly>
+
+<button type="submit">Update Student</button>
+
+</form>
+
+<a href="{% url 'staff_dashboard' %}" class="back">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

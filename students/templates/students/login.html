@@ -3,7 +3,6 @@
 <head>
     <title>Student Login</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -14,38 +13,78 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* 🔥 Animated Gradient Background */
         body {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Vibrant high-color blue gradient */
-            position: relative;
             overflow: hidden;
+            background: linear-gradient(-45deg, #1e3c72, #2a5298, #4f46e5, #00c6ff);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
         }
 
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ✨ Extra floating glow circles */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            animation: float 15s infinite linear;
+        }
+
+        .circle:nth-child(1) { width: 120px; height: 120px; top: 10%; left: 20%; }
+        .circle:nth-child(2) { width: 80px; height: 80px; top: 70%; left: 75%; }
+        .circle:nth-child(3) { width: 150px; height: 150px; top: 40%; left: 50%; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-40px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 🟦 Glass Card */
         .card {
-            background: #ffffff;
+            position: relative;
             padding: 40px;
             border-radius: 20px;
             width: 360px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            position: relative;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
             z-index: 1;
-            animation: slideUp 0.8s ease-out;
         }
 
-        @keyframes slideUp {
-            0% { opacity: 0; transform: translateY(40px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* 💎 Animated Border Glow */
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -3px;
+            border-radius: 22px;
+            background: linear-gradient(45deg, #00f2ff, #4f46e5, #00f2ff);
+            z-index: -1;
+        }
+
+        .card.move-border::before {
+            animation: borderRotate 1.5s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         h2 {
             margin-bottom: 25px;
-            color: #1f2937;
-            font-weight: 600;
-            font-size: 26px;
         }
 
         .input-group {
@@ -58,23 +97,18 @@
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 18px;
-            color: #6b7280;
         }
 
         input {
             width: 100%;
             padding: 14px 14px 14px 40px;
-            border: 1px solid #d1d5db;
+            border: none;
             border-radius: 12px;
             outline: none;
-            font-size: 15px;
-            transition: 0.3s;
         }
 
         input:focus {
-            border-color: #2563eb; /* Matching bright blue accent */
-            box-shadow: 0 0 8px rgba(37,99,235,0.3);
+            box-shadow: 0 0 12px rgba(255,255,255,0.6);
         }
 
         button {
@@ -83,43 +117,31 @@
             margin-top: 20px;
             border: none;
             border-radius: 12px;
-            background-color: #2563eb; /* Bright blue button */
+            background: linear-gradient(45deg, #2563eb, #4f46e5);
             color: white;
             font-size: 16px;
-            font-weight: 500;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
 
         button:hover {
-            background-color: #1d4ed8;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255,255,255,0.6);
         }
 
-        .error {
-            color: #ef4444;
-            margin-bottom: 12px;
+        .back-btn {
+            margin-top: 15px;
+            display: inline-block;
+            text-decoration: none;
+            color: white;
             font-size: 14px;
+            opacity: 0.8;
+            transition: 0.3s;
         }
 
-        /* Subtle floating circles for animation */
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.15);
-            animation: float 15s linear infinite;
-        }
-
-        .circle:nth-child(1) { width: 80px; height: 80px; top: 10%; left: 15%; animation-delay: 0s; }
-        .circle:nth-child(2) { width: 50px; height: 50px; top: 60%; left: 70%; animation-delay: 5s; }
-        .circle:nth-child(3) { width: 120px; height: 120px; top: 40%; left: 50%; animation-delay: 2s; }
-        .circle:nth-child(4) { width: 70px; height: 70px; top: 75%; left: 30%; animation-delay: 7s; }
-
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-30px) translateX(20px); }
-            100% { transform: translateY(0) translateX(0); }
+        .back-btn:hover {
+            opacity: 1;
+            text-decoration: underline;
         }
 
     </style>
@@ -127,22 +149,21 @@
 
 <body>
 
-    <!-- Floating subtle circles -->
-    <div class="circle"></div>
     <div class="circle"></div>
     <div class="circle"></div>
     <div class="circle"></div>
 
-    <div class="card">
+    <div class="card" id="loginCard">
         <h2>🎓 Student Login 📚</h2>
 
         {% if error %}
-            <p class="error">⚠️ {{ error }}</p>
+            <p style="color:#ff6b6b;">⚠️ {{ error }}</p>
         {% endif %}
 
-        <form method="post">
+        <form method="post" onsubmit="animateBorder()">
             {% csrf_token %}
-
+            
+           
             <div class="input-group">
                 <span>👤</span>
                 <input type="text" name="name" placeholder="Enter Name" required>
@@ -155,9 +176,20 @@
 
             <button type="submit">🔐 Login</button>
         </form>
+
+        <a href="/" class="back-btn">⬅ Back to Home</a>
     </div>
+
+<script>
+function animateBorder() {
+    let box = document.getElementById("loginCard");
+    box.classList.add("move-border");
+
+    setTimeout(() => {
+        box.classList.remove("move-border");
+    }, 2000);
+}
+</script>
 
 </body>
 </html>
- 
-

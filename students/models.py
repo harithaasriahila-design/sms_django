@@ -4,6 +4,8 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     roll_no = models.CharField(max_length=20, unique=True)
     student_class = models.CharField(max_length=20)
+
+    age = models.IntegerField(default=0)
     gender = models.CharField(max_length=10)
     blood_group = models.CharField(max_length=5)
     address = models.TextField()
@@ -15,10 +17,16 @@ class Student(models.Model):
     total_fees = models.IntegerField(default=0)
     fees_paid = models.IntegerField(default=0)
     fees_pending = models.IntegerField(default=0)
+    FEES_STATUS = (
+    ('Paid', 'Paid'),
+    ('Pending', 'Pending'),
+)
+
+    fees_status = models.CharField(max_length=20, choices=FEES_STATUS, default='Pending')
 
     def __str__(self):
         return f"{self.name} ({self.roll_no})"
-from django.db import models
+
 
 class Staff(models.Model):
     name = models.CharField(max_length=100)
@@ -27,4 +35,3 @@ class Staff(models.Model):
 
     def __str__(self):
         return self.name
-    

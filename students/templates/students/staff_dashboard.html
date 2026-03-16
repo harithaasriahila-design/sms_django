@@ -1,125 +1,357 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-    <title>Staff Dashboard</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            animation: fadeIn 1s ease-in-out;
-        }
+<title>Staff Dashboard</title>
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        .container {
-            width: 90%;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+<style>
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#667eea,#764ba2);
+}
 
-        .add-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
+.container{
+width:90%;
+margin:30px auto;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
 
-        .add-btn:hover {
-            background: #5643cc;
-            transform: scale(1.05);
-        }
+h1{
+text-align:center;
+margin-bottom:20px;
+}
 
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:20px;
+}
 
-        th, td {
-            padding: 12px;
-            text-align: center;
-        }
+.add-btn{
+padding:10px 18px;
+background:#667eea;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
 
-        th {
-            background: #667eea;
-            color: white;
-        }
+.logout-btn{
+padding:10px 18px;
+background:#ff4d4d;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
 
-        tr:nth-child(even) {
-            background: #f2f2f2;
-        }
+.stats{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
 
-        tr:hover {
-            background: #ddd;
-            transition: 0.3s;
-        }
+.card{
+flex:1;
+min-width:150px;
+background:#f4f4f4;
+padding:20px;
+border-radius:10px;
+text-align:center;
+font-weight:bold;
+}
 
-        .action-btn {
-            padding: 6px 12px;
-            border-radius: 6px;
-            text-decoration: none;
-            color: white;
-            margin: 0 5px;
-            transition: 0.3s;
-        }
+.search-box{
+width:100%;
+padding:10px;
+margin-bottom:15px;
+border-radius:8px;
+border:1px solid #ccc;
+}
 
-        .edit {
-            background: #28a745;
-        }
+table{
+width:100%;
+border-collapse:collapse;
+}
 
-        .delete {
-            background: #dc3545;
-        }
+th,td{
+padding:12px;
+text-align:center;
+}
 
-        .action-btn:hover {
-            opacity: 0.8;
-            transform: scale(1.05);
-        }
-    </style>
+th{
+background:#667eea;
+color:white;
+}
+
+tr:nth-child(even){
+background:#f2f2f2;
+}
+
+.profile{
+width:45px;
+height:45px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.status-paid{
+color:green;
+font-weight:bold;
+}
+
+.status-pending{
+color:red;
+font-weight:bold;
+}
+
+.progress{
+width:100%;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:10px;
+background:#28a745;
+}
+
+.action-btn{
+padding:6px 12px;
+border-radius:6px;
+text-decoration:none;
+color:white;
+margin:0 3px;
+}
+
+.edit{
+background:#28a745;
+}
+
+.delete{
+background:red;
+}
+
+.download{
+margin-top:20px;
+padding:10px 20px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* Dark Mode */
+
+.dark{
+background:#1e1e1e;
+color:white;
+}
+
+.dark .container{
+background:#2b2b2b;
+}
+
+.dark table{
+color:white;
+}
+
+.dark th{
+background:#444;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+table, thead, tbody, th, td, tr{
+display:block;
+}
+
+th{
+display:none;
+}
+
+tr{
+margin-bottom:15px;
+background:#f4f4f4;
+padding:10px;
+border-radius:10px;
+}
+
+td{
+text-align:left;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
 <div class="container">
-    <h1>Staff Dashboard</h1>
 
-    <a href="{% url 'add_student' %}" class="add-btn">+ Add Student</a>
+<h1>Staff Dashboard</h1>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Roll No</th>
-            <th>Actions</th>
-        </tr>
+<div class="top-bar">
 
-        {% for student in students %}
-        <tr>
-            <td>{{ student.id }}</td>
-            <td>{{ student.name }}</td>
-            <td>{{ student.roll_no }}</td>
-            <td>
-                <a href="{% url 'update_student' student.id %}" class="action-btn edit">Edit</a>
-                <a href="{% url 'delete_student' student.id %}" class="action-btn delete">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+<a href="{% url 'add_student' %}" class="add-btn">+ Add Student</a>
+
+<div>
+<button onclick="toggleDark()">🌙 Dark Mode</button>
+<a href="{% url 'staff_logout' %}" class="logout-btn">Logout</a>
 </div>
+
+</div>
+
+<!-- Dashboard Cards -->
+
+<div class="stats">
+
+<div class="card">
+Total Students<br>
+{{ students|length }}
+</div>
+
+<div class="card">
+Classes<br>
+12
+</div>
+
+<div class="card">
+Attendance Avg<br>
+75%
+</div>
+
+<div class="card">
+Fees Pending<br>
+{{ pending_count }}
+</div>
+
+</div>
+
+<!-- Search -->
+
+<input type="text" id="searchInput" class="search-box" placeholder="Search student...">
+
+<table id="studentTable">
+
+<tr>
+<th>Photo</th>
+<th>ID</th>
+<th>Name</th>
+<th>Roll No</th>
+<th>Fees</th>
+<th>Attendance</th>
+<th>Actions</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>
+{% if student.photo %}
+<img src="{{ student.photo.url }}" class="profile">
+{% else %}
+<img src="https://via.placeholder.com/40" class="profile">
+{% endif %}
+</td>
+
+<td>{{ student.id }}</td>
+
+<td>{{ student.name }}</td>
+
+<td>{{ student.roll_no }}</td>
+
+<td>
+{% if student.fees_status == "Paid" %}
+<span class="status-paid">Paid</span>
+{% else %}
+<span class="status-pending">Pending</span>
+{% endif %}
+</td>
+
+<td>
+
+
+<div class="progress-bar"
+style="width:{{ student.attendance }}%;
+background:
+{% if student.attendance >= 75 %}green
+{% elif student.attendance >= 50 %}orange
+{% else %}red
+{% endif %}
+;">
+</div>
+
+</div>
+
+{{ student.attendance }}%
+</td>
+
+<td>
+
+<a href="{% url 'update_student' student.id %}" class="action-btn edit">Edit</a>
+
+<a href="{% url 'delete_student' student.id %}" class="action-btn delete">Delete</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a href="{% url 'download_students' %}" class="download">
+Download Student List
+</a>
+
+</div>
+
+<script>
+
+/* Dark Mode */
+
+function toggleDark(){
+document.body.classList.toggle("dark");
+}
+
+/* Live Search */
+
+document.getElementById("searchInput").addEventListener("keyup", function() {
+
+let filter = this.value.toLowerCase();
+
+let rows = document.querySelectorAll("#studentTable tr");
+
+rows.forEach((row,index)=>{
+
+if(index===0) return;
+
+let text = row.innerText.toLowerCase();
+
+row.style.display = text.includes(filter) ? "" : "none";
+
+});
+
+});
+
+</script>
 
 </body>
 </html>

@@ -9,39 +9,25 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             animation: fadeIn 0.8s ease-in-out;
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; } to { opacity: 1; }
         }
-
         .container {
             width: 40%;
-            margin: 80px auto;
+            margin: 50px auto;
             background: white;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        form {
-            text-align: center;
-        }
-
-        input {
+        h1 { text-align: center; margin-bottom: 20px; color: #333; }
+        input, select, textarea {
             width: 90%;
             padding: 10px;
             margin: 10px 0;
             border-radius: 8px;
             border: 1px solid #ccc;
         }
-
         button {
             padding: 10px 20px;
             background: #667eea;
@@ -51,12 +37,7 @@
             cursor: pointer;
             transition: 0.3s;
         }
-
-        button:hover {
-            background: #5643cc;
-            transform: scale(1.05);
-        }
-
+        button:hover { background: #5643cc; transform: scale(1.05); }
         .back-btn {
             display: inline-block;
             margin-top: 15px;
@@ -67,11 +48,7 @@
             border-radius: 8px;
             transition: 0.3s;
         }
-
-        .back-btn:hover {
-            opacity: 0.8;
-            transform: scale(1.05);
-        }
+        .back-btn:hover { opacity: 0.8; transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -81,7 +58,51 @@
 
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <!-- Name -->
+        <input type="text" name="name" placeholder="Enter Name" required>
+
+        <!-- Roll Number -->
+        <input type="text" name="roll_no" placeholder="Enter Roll No" required>
+
+        <!-- Class -->
+        <input type="text" name="student_class" placeholder="Enter Class" required>
+
+        <!-- Age -->
+        <input type="number" name="age" placeholder="Enter Age" required>
+
+        <!-- Gender -->
+        <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <!-- Blood Group -->
+        <input type="text" name="blood_group" placeholder="Enter Blood Group">
+
+        <!-- Address -->
+        <textarea name="address" placeholder="Enter Address" rows="3"></textarea>
+
+        <!-- Parents Phone -->
+        <input type="text" name="parents_phone" placeholder="Enter Parents Phone Number">
+
+        <!-- Exam Marks -->
+        <input type="number" name="exam_marks" placeholder="Enter Exam Marks">
+
+        <!-- Attendance -->
+        <input type="number" name="attendance" placeholder="Enter Attendance (%)">
+
+        <!-- Total Fees -->
+        <input type="number" name="total_fees" placeholder="Enter Total Fees">
+
+        <!-- Fees Paid -->
+        <input type="number" name="fees_paid" placeholder="Enter Fees Paid">
+
+        <!-- Fees Pending -->
+        <input type="number" name="fees_pending" placeholder="Enter Fees Pending">
+
         <button type="submit">Save Student</button>
     </form>
 

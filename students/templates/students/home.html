@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #5f6bdc, #4b4acb, #3f39b7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Soft top glow circle */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Floating icons */
+        .icon {
+            position: absolute;
+            font-size: 30px;
+            color: rgba(255,255,255,0.6);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-120px) rotate(360deg); }
+        }
+
+        .icon:nth-child(1) { left: 10%; animation-duration: 12s; }
+        .icon:nth-child(2) { left: 25%; animation-duration: 10s; }
+        .icon:nth-child(3) { left: 40%; animation-duration: 14s; }
+        .icon:nth-child(4) { left: 60%; animation-duration: 11s; }
+        .icon:nth-child(5) { left: 75%; animation-duration: 13s; }
+        .icon:nth-child(6) { left: 90%; animation-duration: 15s; }
+
+        /* Page title */
+        .page-title {
+            position: absolute;
+            top: 60px;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Login box */
+        .box {
+            background: lavenderblush;
+            padding: 35px;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            z-index: 1;
+        }
+
+        .box p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        a {
+            text-decoration: none;
+            display: block;
+            margin: 15px 0;
+            padding: 12px;
+            background: linear-gradient(45deg, #5f6bdc, #3f39b7);
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating Study Icons -->
+    <div class="icon">📚</div>
+    <div class="icon">✏️</div>
+    <div class="icon">📖</div>
+    <div class="icon">📝</div>
+    <div class="icon">📐</div>
+    <div class="icon">🎓</div>
+
+    <!-- Visible Page Title -->
+    <h1 class="page-title">Student Management System 🎓</h1>
+
+    <!-- Login Box -->
+    <div class="box">
+        <p>Select Login Type</p>
+
+        
+        <a href="/student-login/">Student Login</a>
+        <a href="/staff-login/">Staff Login</a>
+    </div>
+
+</body>
+</html>

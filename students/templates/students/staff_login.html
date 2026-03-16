@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Staff Login</title>
+    <title>👩‍🏫 Staff Login 🔐✨</title>
     <style>
         body {
             margin: 0;
@@ -89,20 +89,20 @@
 <body>
 
 <div class="login-container">
-    <h2>Staff Login</h2>
+    <h2>👩‍🏫 Staff Login 🔐✨</h2>
 
     {% if error %}
-        <div class="error">{{ error }}</div>
+        <div class="error">⚠️ Oops! {{ error }}</div>
     {% endif %}
 
     <form method="POST">
         {% csrf_token %}
-        <input type="email" name="email" placeholder="Enter Email" required>
-        <input type="text" name="phone" placeholder="Enter Phone" required>
-        <button type="submit">Login</button>
+        <input type="email" name="email" placeholder="📧 Enter Email Address" required>
+        <input type="text" name="phone" placeholder="📱 Enter Phone Number" required>
+        <button type="submit">🚀 Login Now</button>
     </form>
 
-    <a href="{% url 'home' %}" class="back-link">← Back to Home</a>
+    <a href="{% url 'home' %}" class="back-link">🏠 ← Back to Home</a>
 </div>
 
 </body>
