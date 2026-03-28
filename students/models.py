@@ -23,6 +23,7 @@ class Student(models.Model):
 )
 
     fees_status = models.CharField(max_length=20, choices=FEES_STATUS, default='Pending')
+    photo = models.ImageField(upload_to='students/', blank=True, null=True)
 
     def __str__(self):
         return f"{self.name} ({self.roll_no})"

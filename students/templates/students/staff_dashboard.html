@@ -47,8 +47,8 @@ border-radius:8px;
 
 .logout-btn{
 padding:10px 18px;
-background:#ff4d4d;
-color:white;
+background:hsla(302, 71%, 33%, 0.159);
+color:rgb(84, 28, 110);
 text-decoration:none;
 border-radius:8px;
 }
@@ -156,15 +156,15 @@ cursor:pointer;
 
 .dark{
 background:#1e1e1e;
-color:white;
+color:rgb(41, 29, 76);
 }
 
 .dark .container{
-background:#2b2b2b;
+background:#ae36dad4;
 }
 
 .dark table{
-color:white;
+color:rgb(12, 27, 104);
 }
 
 .dark th{
@@ -236,10 +236,6 @@ Attendance Avg<br>
 75%
 </div>
 
-<div class="card">
-Fees Pending<br>
-{{ pending_count }}
-</div>
 
 </div>
 
@@ -288,8 +284,7 @@ Fees Pending<br>
 <td>
 
 
-<div class="progress-bar"
-style="width:{{ student.attendance }}%;
+<div class="progress-bar"style="width:{{ student.attendance }}%;
 background:
 {% if student.attendance >= 75 %}green
 {% elif student.attendance >= 50 %}orange
@@ -352,6 +347,5 @@ row.style.display = text.includes(filter) ? "" : "none";
 });
 
 </script>
-
-</body>
+<body>
 </html>

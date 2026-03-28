@@ -18,7 +18,7 @@
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(17, 49, 107, 0.2);
         }
         h1 { text-align: center; margin-bottom: 20px; color: #333; }
         input, select, textarea {
@@ -42,8 +42,8 @@
             display: inline-block;
             margin-top: 15px;
             padding: 8px 15px;
-            background: #6c757d;
-            color: white;
+            background: #6649a0;
+            color: rgb(37, 13, 142);
             text-decoration: none;
             border-radius: 8px;
             transition: 0.3s;
@@ -102,6 +102,17 @@
 
         <!-- Fees Pending -->
         <input type="number" name="fees_pending" placeholder="Enter Fees Pending">
+
+           <label>Fees status:</label>
+    <select name="fees_status">
+        <option value="Pending" selected>Pending</option>
+        <option value="Paid">Paid</option>
+    </select>
+    
+        <form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<input type="file" name="photo">
 
         <button type="submit">Save Student</button>
     </form>

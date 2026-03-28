@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
@@ -7,3 +8,4 @@ urlpatterns = [
     # Connect students app
     path('', include('students.urls')),
 ]
+

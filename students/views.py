@@ -318,6 +318,12 @@ def update_student(request, id):
         'student': student
     })   
 
+from django.shortcuts import redirect, get_object_or_404
+from .models import Student
 
-
+def pay_fees(request, id):
+    student = get_object_or_404(Student, id=id)
+    student.fees_status = "Paid"
+    student.save()
+    return redirect('staff_dashboard')
 
